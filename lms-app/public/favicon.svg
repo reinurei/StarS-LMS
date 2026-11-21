@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" role="img" aria-label="StarS">
+  <path d="M58 21 C96 14 184 17 224 24 C250 29 264 48 267 74 C271 111 269 151 260 175 C250 201 220 205 184 203 C137 201 83 207 52 198 C23 190 16 166 15 137 C13 101 17 53 31 37 C37 29 47 24 58 21 Z" fill="#7B42F3" stroke="#17131F" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M135 207 C126 186 119 164 109 153 C107 150 110 145 114 143 C133 136 153 122 167 111 C172 107 177 109 179 115 C189 131 199 148 216 158 C221 161 220 167 215 169 C201 178 194 185 192 205 C172 213 152 214 135 207 Z" fill="#F6C83C" stroke="#17131F" stroke-width="7" stroke-linejoin="round"/>
+  <ellipse cx="157" cy="172" rx="6" ry="8" fill="#17131F"/>
+  <ellipse cx="190" cy="179" rx="6" ry="8" fill="#17131F"/>
+  <circle cx="155" cy="169" r="1.8" fill="#FFFDF5"/>
+  <circle cx="188" cy="176" r="1.8" fill="#FFFDF5"/>
+  <path d="M169 188 C174 194 181 194 185 188" fill="none" stroke="#17131F" stroke-width="4" stroke-linecap="round"/>
+</svg>

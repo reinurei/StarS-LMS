@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+lms-app/node_modules/
+
+# Production builds
+dist/
+lms-app/dist/
+
+# Environment variables & secrets (keep .env.example committed)
+.env
+.env.local
+.env.*.local
+lms-app/.env
+lms-app/.env.local
+lms-app/.env.*.local
+
+# Supabase CLI local cache
+supabase/.temp/
+
+# Submission archives
+*.zip
+
+# Logs & OS artifacts
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

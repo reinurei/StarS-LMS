@@ -1,0 +1,21 @@
+# Supabase local development configuration
+# Reference: https://supabase.com/docs/guides/cli/config
+
+[auth.hook.custom_access_token]
+enabled = true
+uri     = "pg-functions://postgres/public/custom_access_token_hook"
+
+# Auth hook: failed-login counter and account lockout (Requirement 1.2)
+# The Edge Function is invoked by Supabase Auth on every sign-in attempt.
+# It tracks failed_attempts / locked_until inside auth.users.app_metadata.
+#
+# To wire this up in the Supabase dashboard:
+#   Auth → Hooks → "Password Verification Hook" → set to this Edge Function URL.
+#
+# Local dev URI format (once the function is deployed locally):
+#   http://localhost:54321/functions/v1/auth-hook
+[auth.hook.send_sms]
+# Reuse the send_sms hook slot for custom sign-in interception on local dev.
+# In production, register the hook under Auth → Hooks in the dashboard.
+enabled = false
+uri     = "http://localhost:54321/functions/v1/auth-hook"

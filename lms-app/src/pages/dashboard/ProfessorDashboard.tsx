@@ -1,0 +1,318 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  ArrowRight,
+  BookOpen,
+  ClipboardCheck,
+  Copy,
+  FileText,
+  GraduationCap,
+  Plus,
+  Users,
+} from 'lucide-react';
+import { StarMascot } from '../../components/mascot/StarMascot';
+import { Badge, Button } from '../../components/ui';
+import { useAuth } from '../../hooks/useAuth';
+import { computeAttendancePercentage } from '../../lib/attendance';
+import { lmsService } from '../../lib/dataService';
+import { toast } from '../../lib/toast';
+import type { Activity, Announcement, Course } from '../../lib/types';
+
+const CARD_GRADIENTS = [
+  'from-[#C4B5FD] via-[#A78BFA] to-[#818CF8]',
+  'from-[#93C5FD] via-[#60A5FA] to-[#818CF8]',
+  'from-[#FDBA74] via-[#FB923C] to-[#F472B6]',
+  'from-[#6EE7B7] via-[#34D399] to-[#38BDF8]',
+];
+
+export default function ProfessorDashboard() {
+  const { user } = useAuth();
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [stats, setStats] = useState({ totalStudents: 0, pendingGrading: 0, avgAttendance: 0 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user) return;
+    let active = true;
+
+    async function load() {
+      setLoading(true);
+      try {
+        const myCourses = await lmsService.listCourses(user!.id, 'professor');
+        const activeCourses = myCourses.filter((c) => !c.is_archived);
+        const allActivities = await lmsService.listActivities();
+        const myCourseIds = new Set(activeCourses.map((c) => c.id));
+        const myActivities = allActivities.filter((a) => myCourseIds.has(a.course_id));
+        const allSubmissions = await lmsService.listSubmissions();
+        const myActivityIds = new Set(myActivities.map((a) => a.id));
+        const pendingGrading = allSubmissions.filter(
+          (s) => myActivityIds.has(s.activity_id) && s.grade === null,
+        ).length;
+
+        let studentIds = new Set<string>();
+        let attSum = 0;
+        let attCount = 0;
+
+        for (const c of activeCourses) {
+          const [enrs, mods, atts] = await Promise.all([
+            lmsService.listCourseEnrollments(c.id),
+            lmsService.listModules(c.id),
+            lmsService.listCourseAttendance(c.id),
+          ]);
+          const activeEnrs = enrs.filter((e) => e.status === 'active');
+          for (const e of activeEnrs) {
+            studentIds.add(e.student_id);
+            const studentAtt = atts.filter((a) => a.student_id === e.student_id);
+            attSum += computeAttendancePercentage(studentAtt, mods.length);
+            attCount += 1;
+          }
+        }
+
+        const allAnn = await lmsService.listAnnouncements();
+        if (!active) return;
+        setCourses(activeCourses);
+        setActivities(myActivities.slice(0, 5));
+        setAnnouncements(allAnn.filter((a) => myCourseIds.has(a.course_id)).slice(0, 4));
+        setStats({
+          totalStudents: studentIds.size,
+          pendingGrading,
+          avgAttendance: attCount > 0 ? Math.round((attSum / attCount) * 10) / 10 : 0,
+        });
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      active = false;
+    };
+  }, [user]);
+
+  const copyCode = (code: string) => {
+    navigator.clipboard?.writeText(code);
+    toast.success(`Enrollment code ${code} copied!`);
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Hero Banner matching inspo design */}
+      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] p-6 sm:p-8 text-white shadow-md">
+        <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="max-w-xl">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur-xs">
+              <GraduationCap className="h-3.5 w-3.5" />
+              Professor Workspace · 1st Semester 2026–2027
+            </span>
+            <h1 className="mt-3 text-2xl font-bold tracking-tight">
+              Hi, {user?.full_name ?? 'Professor'}
+            </h1>
+            <p className="mt-1.5 text-sm text-white/85">
+              Manage your courses, upload learning modules with automated attendance tracking, and monitor student performance in real time.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link to="/courses/new">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-[#7C5CFC] shadow-sm transition hover:bg-[#F5F3FF] cursor-pointer"
+                >
+                  <Plus className="h-4 w-4" />
+                  Create New Course
+                </button>
+              </Link>
+              <Link to="/reports">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/20 cursor-pointer"
+                >
+                  View Analytics
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Interactive 3D Star Mascot */}
+          <div className="hidden md:flex items-center gap-4">
+            <StarMascot
+              pose="wave"
+              size={210}
+              message={`${courses.length} active course${courses.length === 1 ? '' : 's'} ready!`}
+            />
+          </div>
+        </div>
+        <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+      </section>
+
+      {/* Main Content Grid (2-col on desktop like inspo design) */}
+      <div className="grid gap-6 xl:grid-cols-3">
+        {/* Left 2 Columns: Active Courses */}
+        <div className="space-y-6 xl:col-span-2">
+          {/* Quick KPI Strip */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-[#6B7280]">Enrolled Students</span>
+                <Users className="h-4 w-4 text-[#7C5CFC]" />
+              </div>
+              <p className="mt-2 text-2xl font-bold text-[#1E1B4B]">{stats.totalStudents}</p>
+            </div>
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-[#6B7280]">Avg Module Attendance</span>
+                <ClipboardCheck className="h-4 w-4 text-emerald-500" />
+              </div>
+              <p className="mt-2 text-2xl font-bold text-[#1E1B4B]">{stats.avgAttendance}%</p>
+            </div>
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-4 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium text-[#6B7280]">Pending Submissions</span>
+                <FileText className="h-4 w-4 text-amber-500" />
+              </div>
+              <p className="mt-2 text-2xl font-bold text-[#1E1B4B]">{stats.pendingGrading}</p>
+            </div>
+          </div>
+
+          {/* Courses Grid */}
+          <div>
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-[#1E1B4B]">Your Active Courses</h2>
+              <Link to="/courses" className="text-xs font-semibold text-[#7C5CFC] hover:underline">
+                VIEW ALL
+              </Link>
+            </div>
+
+            {loading ? (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[1, 2].map((i) => (
+                  <div key={i} className="h-52 animate-pulse rounded-xl bg-white border border-[#E5E7EB]" />
+                ))}
+              </div>
+            ) : courses.length === 0 ? (
+              <div className="rounded-2xl border border-dashed border-[#D8D4F2] bg-white p-10 text-center">
+                <BookOpen className="mx-auto h-8 w-8 text-[#7C5CFC]" />
+                <p className="mt-2 text-sm font-medium text-[#1E1B4B]">No active courses yet</p>
+                <p className="mt-1 text-xs text-[#6B7280]">
+                  Create your first course to generate an enrollment code and publish modules.
+                </p>
+                <Link to="/courses/new" className="mt-4 inline-block">
+                  <Button size="sm">Create Course</Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {courses.map((course, index) => (
+                  <div
+                    key={course.id}
+                    className="group overflow-hidden rounded-xl border border-[#E5E7EB] bg-white shadow-xs transition-shadow duration-150 hover:shadow-md"
+                  >
+                    <Link to={`/courses/${course.id}`}>
+                      <div
+                        className={`relative flex h-32 flex-col justify-between overflow-hidden bg-gradient-to-br p-4 text-white ${CARD_GRADIENTS[index % CARD_GRADIENTS.length]}`}
+                      >
+                        {course.cover_image_url && (
+                          <>
+                            <img
+                              src={course.cover_image_url}
+                              alt={`${course.name} cover`}
+                              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1E1B4B]/80 via-[#1E1B4B]/35 to-black/20" />
+                          </>
+                        )}
+                        <div className="relative z-10 flex items-center justify-between">
+                          <span className="rounded-lg bg-white/25 px-2.5 py-0.5 text-xs font-bold backdrop-blur-xs">
+                            {course.subject_code}
+                          </span>
+                          <span className="text-[11px] font-medium text-white/90">
+                            {course.semester}
+                          </span>
+                        </div>
+                        <h3 className="relative z-10 text-base font-bold leading-snug drop-shadow-xs">
+                          {course.name}
+                        </h3>
+                      </div>
+                    </Link>
+
+                    <div className="p-4 space-y-3">
+                      <p className="text-xs text-[#6B7280] line-clamp-2">{course.schedule}</p>
+                      <div className="flex items-center justify-between border-t border-[#E5E7EB] pt-3">
+                        <button
+                          type="button"
+                          onClick={() => copyCode(course.enrollment_code)}
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-[#EDE9FE] px-2.5 py-1 text-xs font-semibold text-[#7C5CFC] hover:bg-[#DDD6FE] cursor-pointer"
+                        >
+                          <Copy className="h-3 w-3" />
+                          {course.enrollment_code}
+                        </button>
+                        <Link
+                          to={`/courses/${course.id}`}
+                          className="text-xs font-semibold text-[#7C5CFC] hover:underline"
+                        >
+                          Manage →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right Column Widgets (inspired by inspo design right rail) */}
+        <div className="space-y-6">
+          {/* Upcoming Activities */}
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-xs">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-[#1E1B4B]">Recent Activities</h2>
+              <Link to="/activities" className="text-xs font-semibold text-[#7C5CFC] hover:underline">
+                View all
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {activities.length === 0 ? (
+                <p className="text-xs text-[#6B7280]">No activities created yet.</p>
+              ) : (
+                activities.map((act) => (
+                  <Link
+                    key={act.id}
+                    to={`/activities/${act.id}`}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-[#E5E7EB] p-3 transition hover:border-[#7C5CFC]/40 hover:bg-[#F5F3FF]/50"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate text-xs font-semibold text-[#1E1B4B]">{act.title}</p>
+                      <p className="mt-0.5 text-[11px] text-[#6B7280]">
+                        Due {new Date(act.deadline).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <Badge variant="primary">{act.activity_type.replace('_', ' ')}</Badge>
+                  </Link>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Recent Announcements */}
+          <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-xs">
+            <h2 className="mb-3 text-sm font-semibold text-[#1E1B4B]">Latest Announcements</h2>
+            <div className="space-y-3">
+              {announcements.length === 0 ? (
+                <p className="text-xs text-[#6B7280]">No announcements posted yet.</p>
+              ) : (
+                announcements.map((ann) => (
+                  <div key={ann.id} className="rounded-xl bg-[#F5F3FF] p-3">
+                    <p className="text-xs font-semibold text-[#1E1B4B]">{ann.title}</p>
+                    <p className="mt-1 text-xs text-[#6B7280] line-clamp-2">{ann.body}</p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,764 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Project scaffolding and core infrastructure": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029140986
+      }
+    ],
+    "2.1 Write SQL migration file for all tables from the ERD (`profiles`, `courses`, `enrollments`, `modules`, `materials`, `material_access_logs`, `activities`, `activity_materials`, `questions`, `question_options`, `submissions`, `submission_files`, `meetings`, `attendance_records`, `attendance_join_events`, `notifications`, `announcements`, `forum_threads`, `forum_posts`, `activity_logs`)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141153
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795030825210
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031235618
+      }
+    ],
+    "2.2 Write RLS policy migration covering all representative policies from the design": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141281
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795030828393
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031238765
+      }
+    ],
+    "2.3 Configure Supabase Auth Custom Access Token Hook to inject `role` from `app_metadata` into the JWT": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141398
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795030831610
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031241971
+      }
+    ],
+    "2.4 Create private Storage buckets: `avatars`, `materials`, `submissions`, `recordings` with the path patterns from the design": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141465
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795030834872
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031245272
+      }
+    ],
+    "3.1 Implement `useAuth` hook (`src/hooks/useAuth.ts`) — wraps `supabase.auth.getSession()`, subscribes to `onAuthStateChange`, exposes `user`, `role`, `isLoading`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141580
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031248971
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795032224860
+      }
+    ],
+    "3.2 Build Login page (`src/pages/auth/`) with email + password form, Zod validation, and Supabase `signInWithPassword`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141692
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031252244
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795032228156
+      }
+    ],
+    "3.3 Implement failed-login counter via a Supabase Auth hook (Edge Function or DB hook) that increments `failed_attempts` and sets `locked_until` after 5 failures within 15 minutes": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141800
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031255622
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795032232937
+      }
+    ],
+    "3.4 Build Password Reset pages (request + confirm) using `supabase.auth.resetPasswordForEmail` and `updateUser`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029141908
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031258708
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795032236645
+      }
+    ],
+    "3.5 Implement `AuthGuard` and `RoleGuard` components (`src/components/guards/`) to protect routes": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142002
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031262083
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795032239831
+      }
+    ],
+    "3.6 Add session-inactivity timeout: 30-minute idle timer that calls `supabase.auth.signOut()` and redirects to login": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142082
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031265467
+      }
+    ],
+    "4.1 Build Profile page (`src/pages/profile/`) — displays full name, email, role, avatar; edit form with Zod validation (max 100 chars for name, valid email format, max 5 MB JPEG/PNG/GIF/WebP avatar)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142244
+      }
+    ],
+    "4.2 Wire avatar upload to `avatars` Supabase Storage bucket; display uploaded image via signed URL": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142319
+      }
+    ],
+    "5.1 Build `AppShell` with `Sidebar` (≥1024 px) and `MobileDrawer` (<1024 px) navigation, responsive layout adapting from 320 px to 1920 px": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142425
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031268789
+      }
+    ],
+    "5.2 Configure React Router with protected routes for all pages, applying `AuthGuard` and `RoleGuard`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142542
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031273996
+      }
+    ],
+    "5.3 Add `Navbar` with `NotificationBadge` showing real-time unread count": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142642
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031277024
+      }
+    ],
+    "5.4 Build shared UI component library (`src/components/ui/`): `Button`, `Input`, `Modal`, `Badge`, `Table` with consistent Tailwind variants (default, hover, disabled, error states)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142743
+      },
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031280247
+      }
+    ],
+    "6.1 Add enrollment code generator utility (`src/lib/enrollmentCode.ts`) — generates an 8-character alphanumeric code and retries on collision against the `courses` table": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142832
+      }
+    ],
+    "6.3 Build Course creation form with Zod validation (name 1–150 chars, subject code 3–10 alphanumeric, description 1–1000 chars, schedule required); on submit, insert course and store generated enrollment code": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142910
+      }
+    ],
+    "6.4 Build `CourseList` page — lists the authenticated Professor's courses grouped by semester/academic year, showing enrollment code per course": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029142998
+      }
+    ],
+    "6.5 Build course edit form; display field-level errors without discarding unsaved input on failure (Requirement 3.9)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143071
+      }
+    ],
+    "6.6 Implement course archive and delete actions (delete requires confirmation dialog)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143183
+      }
+    ],
+    "6.7 Build enrolled-student roster view within `CourseDetail` — shows full name, email, enrollment date": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143276
+      }
+    ],
+    "7.1 Build enrollment-by-code form; call enrollment Edge Function that validates code, capacity, expiry, and duplicate enrollment, returning typed errors (`INVALID_CODE`, `EXPIRED`, `CAPACITY_REACHED`, `ALREADY_ENROLLED`)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143367
+      }
+    ],
+    "7.2 Implement Professor-side invitation UI — input student email, trigger Edge Function that creates a pending enrollment record and sends a notification email within 60 seconds": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143482
+      }
+    ],
+    "7.3 Build Student invitation-acceptance flow — verify invitation age ≤ 7 days; reject expired invitations with an error message": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143595
+      }
+    ],
+    "8.1 Add file-upload validator to `src/lib/validators.ts` — accepts the 18 allowed MIME types at ≤500 MB; also add submission-file validator (PDF, DOC, DOCX, JPEG, PNG, ZIP; ≤100 MB total; ≤10 files)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143708
+      }
+    ],
+    "8.3 Add URL validator to `src/lib/validators.ts` — accepts strings beginning with `http://` or `https://` that parse as valid RFC 3986 URIs": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143781
+      }
+    ],
+    "8.5 Build `MaterialUpload` component — handles file selection with client-side validation, calls `POST /generate-signed-url` Edge Function to get upload URL, stores file in `materials` bucket, creates Material record linked to module and course": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143851
+      }
+    ],
+    "8.6 Build `ModuleView` page — organises materials by module, shows title, description, file type, upload date; supports external URL materials": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143914
+      }
+    ],
+    "8.7 Implement material metadata edit (title, description, module) and file replacement; file replacement must delete the previous file and update the material record": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029143983
+      }
+    ],
+    "8.8 Record material access events (`material_access_logs`) when a Student opens or downloads a material; display per-material access log to the Professor": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144041
+      }
+    ],
+    "8.9 Write `generate-signed-url` Edge Function (`src/edge-functions/generate-signed-url/`) — authenticates caller, checks RLS, calls `createSignedUrl()`, returns `{ signedUrl, expiresAt }`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144099
+      }
+    ],
+    "9.1 Build Activity creation form with Zod validation (title 1–200 chars, activity type enum, instructions 1–5000 chars, deadline in the future, optional reference materials attachment)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144162
+      }
+    ],
+    "9.2 Build question builder for Multiple Choice and Quiz activity types — up to 100 questions, up to 6 options per question, exactly 1 correct answer per question": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144236
+      }
+    ],
+    "9.3 Build `ActivityList` page (Professor view) — groups submissions by Submitted, Late, Pending, Missing status": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144311
+      }
+    ],
+    "9.4 Implement Professor submission download (via signed URL) with download event logging (Professor ID, submission ID, timestamp)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144381
+      }
+    ],
+    "9.5 Build grade entry form — numeric grade [0, 100] with feedback field; on save, persist grade + feedback and mark submission as Graded; display grade summary on Activity view": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144520
+      }
+    ],
+    "10.1 Build `ActivityList` page (Student view) — categorises activities as Upcoming, Submitted, Graded, Late, Missing; shows instructions, deadline, reference materials, and submission status": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144589
+      }
+    ],
+    "10.2 Implement submission status classifier (`src/lib/classifySubmission.ts`) — returns `late` iff `submitted_at > deadline`, `submitted` iff `submitted_at <= deadline`, `missing` iff no submission and `now > deadline`, `upcoming` iff no submission and `now <= deadline`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144665
+      }
+    ],
+    "10.4 Build `SubmissionForm` component — file picker with client-side validator (PDF, DOC, DOCX, JPEG, PNG, ZIP; ≤100 MB total; ≤10 files), text answer field, submit button; handles resubmission up to `max_resubmissions`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144743
+      }
+    ],
+    "10.5 Implement resubmission guard — read `resubmission_count` before accepting; reject once count reaches `max_resubmissions`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144827
+      }
+    ],
+    "10.7 Display released grade and feedback on Student's submission view (Requirement 7.7)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029144927
+      }
+    ],
+    "11. Checkpoint — core CRUD and submission flows": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145021
+      }
+    ],
+    "12.1 Build `QuizPlayer` component — displays questions one-by-one or all at once, enforces time limit with a countdown timer, auto-submits on expiry, records start time": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145111
+      }
+    ],
+    "12.2 Implement quiz auto-grade function (`src/lib/scoreQuizSubmission.ts`) — compares student answer to correct answer after `trim()` + `toLowerCase()`, counts matches": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145184
+      }
+    ],
+    "12.4 Implement question randomisation — shuffle question order per student session when `randomize_questions = true`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145256
+      }
+    ],
+    "13.1 Build Meeting creation form (title 1–200 chars, date, start time, duration 15–480 minutes); on submit, generate a deterministic Jitsi room name (`lms-meeting-{meetingId}`), save Meeting record and store join link": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145337
+      }
+    ],
+    "13.2 Build `MeetingList` page — shows all meetings within the next 30 days on Professor's dashboard (title, date, start time, course name, join link)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145413
+      }
+    ],
+    "13.3 Build `JitsiRoom` component (`src/components/meetings/JitsiRoom.tsx`) using `@jitsi/react-sdk` `JitsiMeeting`": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145483
+      }
+    ],
+    "13.4 Implement meeting start action — update meeting status to \"In Progress\" via Supabase; wire `onMeetingEnded` to update status to \"Completed\"": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145566
+      }
+    ],
+    "13.5 Implement recording consent flow — show consent modal before enabling recording; set `consent_acknowledged = true` and start recording only after Professor confirms": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145632
+      }
+    ],
+    "13.6 Write `meeting-webhook` Edge Function (`src/edge-functions/meeting-webhook/`) — receives `PARTICIPANT_JOINED`, `PARTICIPANT_LEFT`, `MEETING_ENDED` events from Jitsi; idempotent via `(meeting_id, participant_id, event_type, timestamp)` deduplication": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145695
+      }
+    ],
+    "13.7 Wire meeting recording URL save and make it accessible to enrolled students within 15 minutes of meeting completion": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145757
+      }
+    ],
+    "14.1 Build Student meeting list on Student dashboard — meetings within 30 days with join link; block join attempts outside the `[start - 15 min, end]` window": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145823
+      }
+    ],
+    "14.3 Implement enrollment check before redirecting Student to Jitsi room; display error if not enrolled or API unavailable": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145890
+      }
+    ],
+    "14.4 Display meeting recording link on Meeting detail page once available (within 24 hours of end)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029145951
+      }
+    ],
+    "14.5 Build Student attendance page — per-course attendance records showing meeting date, status, and duration attended in minutes": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146035
+      }
+    ],
+    "15.1 Implement `computeAttendedDuration(intervals)` function (`src/lib/attendance.ts`) — sums `(left_at - joined_at)` in minutes for each `attendance_join_events` record": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146108
+      }
+    ],
+    "15.3 Implement `deriveAttendanceStatus(attendedDuration, meetingDuration, threshold, firstJoinOffset, lastLeaveOffset)` function — returns Present/Late/Left Early/Absent per the four-rule definition in Requirement 10.4": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146177
+      }
+    ],
+    "15.5 Implement attendance threshold validator — accepts integers in [1, 100]; wire to Professor course settings form": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146238
+      }
+    ],
+    "15.7 Wire `meeting-webhook` Edge Function (task 13.6) to create/update `attendance_records` and `attendance_join_events` rows on each participant event; run post-meeting attendance evaluation (task 15.3) when `MEETING_ENDED` fires, generating the attendance report within 5 minutes": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146316
+      }
+    ],
+    "15.8 Build manual attendance correction UI for Professors — saves corrected status, correction timestamp, and Professor user ID": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146377
+      }
+    ],
+    "15.9 Build attendance history page (Professor) — full Attendance_Records for all enrolled students, sorted by meeting date descending": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146444
+      }
+    ],
+    "15.10 Implement `computeAttendancePercentage(records)` function — `(present + late) / totalMeetings * 100`, rounded to two decimal places": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146564
+      }
+    ],
+    "16.1 Implement server-side notification creation logic (Supabase DB trigger or Edge Function) — inserts one notification row per active enrollment when a material is uploaded, an activity is created, a grade is released, or a meeting is created/updated": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146620
+      }
+    ],
+    "16.3 Implement `useNotifications` hook (`src/hooks/useNotifications.ts`) — subscribes to the user's Supabase Realtime Broadcast channel, maintains an in-memory notification list and unread count": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146700
+      }
+    ],
+    "16.4 Build `NotificationCenter` component — displays notifications in reverse chronological order (max 100), marks individual notifications as read, shows unread count badge": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146771
+      }
+    ],
+    "16.5 Implement mark-as-read mutation — sets `is_read = true`, updates `read_at`, decrements unread count in Zustand store": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146836
+      }
+    ],
+    "16.7 Implement deadline-reminder scheduler (Supabase scheduled function or pg_cron) — fires 24 hours before each activity deadline for students who have not yet submitted; fires 15 minutes before each meeting start for all enrolled students": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146902
+      }
+    ],
+    "16.8 Write `send-notification-email` Edge Function (`src/edge-functions/send-notification-email/`) — sends email via Resend/SMTP for invitation and grade-released events": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029146983
+      }
+    ],
+    "16.9 Build Announcement creation form (Professor) — inserts announcement record and triggers notifications to all enrolled students; display announcements on Course page": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147053
+      }
+    ],
+    "17. Checkpoint — notifications and meeting flows": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147130
+      }
+    ],
+    "18.1 Build `AcademicCalendar` page — month/week view showing all activity deadlines, meeting dates, and recurring course session dates for the user's enrolled/managed courses": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147201
+      }
+    ],
+    "18.2 Implement calendar event detail panel — clicking an event shows title, course, date/time, description without navigating away": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147270
+      }
+    ],
+    "18.3 Add calendar filter by course or event type (Activity, Meeting, Course Session); show empty-state message when no events match": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147358
+      }
+    ],
+    "19.1 Build `ForumList` and `ThreadView` pages — per-course forum where enrolled students and the course's professor can create threads and post replies; display posts within 2 seconds of submission": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147426
+      }
+    ],
+    "19.2 Implement Professor forum moderation — lock thread (prevents new replies, keeps posts visible), pin thread, delete thread or post; reflect changes within 2 seconds via Supabase Realtime": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147513
+      }
+    ],
+    "19.3 Implement real-time forum post delivery via `useRealtimeChannel` hook (`src/hooks/useRealtimeChannel.ts`) subscribing to the course's Realtime Broadcast channel": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147610
+      }
+    ],
+    "20.1 Build `AnalyticsDashboard` page — displays per-course: total enrolled students, per-student attendance percentage (via `computeAttendancePercentage`), overall class attendance rate, per-activity submission statistics (total submissions, % on-time)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147691
+      }
+    ],
+    "20.2 Build grade summary table per course — shows each student's numerical grade for every graded activity alongside the activity's maximum possible grade": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147789
+      }
+    ],
+    "20.3 Implement dashboard filter controls (course, student, date range, semester) — update displayed data within 3 seconds; show no-data message when filters return no results": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147865
+      }
+    ],
+    "20.4 Write `export-report` Edge Function (`src/edge-functions/export-report/`) — accepts `{ courseId, format, filters }`, queries attendance + grade data, streams CSV or XLSX response (Streams API for progressive download); handles up to 10,000 rows within 10 seconds; file includes one row per student with columns for name, ID, activity grades, and attendance percentage": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029147968
+      }
+    ],
+    "21.1 Build student grade view — shows score earned and maximum possible score for every graded activity in enrolled courses; shows \"Pending Grade\" for ungraded submissions": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148057
+      }
+    ],
+    "21.2 Build student attendance records view per course — shows each meeting's date and attendance status (Present, Absent, Late, Excused)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148141
+      }
+    ],
+    "21.3 Build progress summary per course — counts of Activities completed (submitted on/before due date), pending (not submitted, due date not passed), and missing (not submitted, due date passed)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148219
+      }
+    ],
+    "22.1 Implement activity logger utility (`src/lib/activityLogger.ts`) — inserts into `activity_logs` for create, update, delete, and download operations, capturing user ID, action type, resource type, resource ID, and timestamp": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148290
+      }
+    ],
+    "22.2 Wire activity logger to all create/update/delete mutations in courses, materials, activities, meetings, submissions, and to download actions in materials and submissions": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148362
+      }
+    ],
+    "22.3 Add data privacy controls to Profile settings page — \"Request my data\" and \"Delete my account\" actions (Requirement 15.5)": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148434
+      }
+    ],
+    "22.4 Verify HTTPS enforcement — ensure all Supabase client calls and Edge Function fetches use HTTPS; add Content-Security-Policy header in Vite config": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148511
+      }
+    ],
+    "23. Final checkpoint — integration and end-to-end coverage": [
+      {
+        "executionId": "6a68869d-7af8-436c-a1e3-5de4c08fbdd1",
+        "chatSessionId": "sess_9875238c-389a-4583-baf1-fecebcd1e09e",
+        "timestamp": 1795029148637
+      }
+    ],
+    "2. Database schema and RLS policies": [
+      {
+        "executionId": "0a3bc646-94b8-4e3c-acc8-6cbaecdbedd3",
+        "chatSessionId": "sess_560774e8-705d-420e-ad68-5c2e2adafc36",
+        "timestamp": 1795031245381
+      }
+    ]
+  }
+}
