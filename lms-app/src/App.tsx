@@ -52,6 +52,7 @@ export default function App() {
           <Routes>
             {/* Public Auth Routes */}
             <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/auth/signup" element={<LoginPage initialMode="signup" />} />
             <Route path="/auth/reset-password" element={<PasswordResetRequestPage />} />
             <Route path="/auth/reset-password/confirm" element={<PasswordResetConfirmPage />} />
 

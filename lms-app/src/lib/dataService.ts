@@ -42,6 +42,7 @@ import type {
   Submission,
   SubmissionFile,
   UserActivityStatus,
+  UserRole,
 } from './types';
 import {
   validateExternalUrl,
@@ -143,6 +144,33 @@ export const lmsService = {
       return (data as Profile[]) ?? [];
     }
     return loadDb().profiles;
+  },
+
+  async createDemoProfile(profileData: {
+    full_name: string;
+    email: string;
+    role: UserRole;
+    program_course?: string | null;
+  }): Promise<Profile> {
+    const db = loadDb();
+    const now = new Date().toISOString();
+    const newProfile: Profile = {
+      id: uid(`user-${profileData.role}`),
+      full_name: profileData.full_name,
+      email: profileData.email,
+      role: profileData.role,
+      avatar_url: null,
+      activity_status: 'active',
+      program_course:
+        profileData.program_course ??
+        (profileData.role === 'professor' ? 'Faculty & Administration' : 'Undergraduate Student'),
+      social_links: [],
+      created_at: now,
+      updated_at: now,
+    };
+    db.profiles.push(newProfile);
+    saveDb(db);
+    return newProfile;
   },
 
   async updateProfile(

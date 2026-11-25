@@ -10,6 +10,28 @@ export const loginSchema = z.object({
 });
 export type LoginFormValues = z.infer<typeof loginSchema>;
 
+export const signUpSchema = z
+  .object({
+    fullName: z
+      .string()
+      .trim()
+      .min(2, 'Full name must be at least 2 characters')
+      .max(100, 'Full name must be 100 characters or fewer'),
+    email: z.string().trim().min(1, 'Email is required').email('Enter a valid email address'),
+    role: z.enum(['student', 'professor']),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(72, 'Password cannot exceed 72 characters'),
+    confirmPassword: z.string().min(1, 'Please confirm your password'),
+    facultyPasscode: z.string().optional(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
+export type SignUpFormValues = z.infer<typeof signUpSchema>;
+
 export const passwordResetRequestSchema = z.object({
   email: z.string().trim().min(1, 'Email is required').email('Enter a valid email address'),
 });
